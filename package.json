@@ -1,0 +1,22 @@
+{
+  "name": "ci-cd-test",
+  "version": "1.0.0",
+  "description": "Simple Node.js and Express app for learning CI/CD pipelines",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "ci",
+    "cd"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
