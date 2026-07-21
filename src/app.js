@@ -18,4 +18,11 @@ app.get('/health', (req, res) => {
   });
 });
 
+app.get('/home',(req,res)=>{
+    res.json({
+        message:"WELCOME TO THE HOME PAGE",
+        status:'ok'
+    })
+})
+
 module.exports = app;
