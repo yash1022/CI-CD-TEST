@@ -34,3 +34,25 @@ jobs:
         run: |
           docker pull yashsingh989/myrepo:latest
           docker run --rm yashsingh989/myrepo:latest echo "Docker image is working!"
+
+      - name: Deploy to EC2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            # Stop and remove the old container
+            docker stop myapp || true
+            docker rm myapp || true
+            
+            # Pull the latest Docker image
+            docker pull yashsingh989/myrepo:latest
+            
+            # Run the new container
+            docker run -d \
+              --name myapp \
+              -p 3050:3000 \
+              --restart unless-stopped \
+              yashsingh989/myrepo:latest
+      
